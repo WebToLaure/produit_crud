@@ -84,36 +84,36 @@ export default function Products() {
 
     return (
 
-        <div>
+        <>
             {/* <!-- Add Product button --> */}
-            <button onClick={add} type="button" className="btn btn-primary btn-sm mt-4" data-mdb-ripple-color="dark"> Ajouter un produit</button>
+            <button onClick={add} type="button" className="btn btn-dark btn-sm mt-4 ms-3" data-mdb-ripple-color="dark"> Ajouter un produit</button>
 
             {showInput && <fieldset className="form-floating mb-3">
-                <legend>Ajout de votre produit</legend>
+                <legend>Ajout d'un produit</legend>
                 <p>
                     <label htmlFor='nom'> Nom du produit</label>
-                    <input type='text' className="form-control" value={nomInput} placeholder="Nom du Produit" onChange={(event) => setNomInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2" autoFocus></input>
+                    <input type='text' className="form-control bg-light" value={nomInput} placeholder="Nom du Produit" onChange={(event) => setNomInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2" autoFocus></input>
                 </p>
                 <p>
-                    <label htmlFor='nom'> Montant unitaire</label>
-                    <input type='text' className="form-control" value={priceInput} placeholder="Montant unitaire" onChange={(event) => setPriceInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <label htmlFor='nom'> Prix unitaire</label>
+                    <input type='text' className="form-control bg-light" value={priceInput} placeholder="Prix unitaire" onChange={(event) => setPriceInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                 </p>
                 <p>
-                    <label htmlFor='nom'> Qunatité</label>
-                    <input type='text' className="form-control" value={quantityInput} placeholder="Quantité" onChange={(event) => setQuantityInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <label htmlFor='nom'> Quantité</label>
+                    <input type='text' className="form-control bg-light" value={quantityInput} placeholder="Quantité" onChange={(event) => setQuantityInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                 </p>
-                <button onClick={() => addProduct()} type="button" className="btn btn-primary" data-mdb-ripple-color="dark">
-                    Ajouter
+                <button onClick={() => addProduct()} type="button" className="btn btn-light" data-mdb-ripple-color="dark">
+                    Valider
                 </button>
             </fieldset>}
 
 
             {/* get AllProducts */}
 
-            <table className="table mt-4">
-                <thead>
+            <table className="table table-dark mt-2 me-4">
+                <thead className="thead-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Quantité</th>
@@ -121,10 +121,12 @@ export default function Products() {
                     </tr>
                 </thead>
                 <tbody>
+
                     {listOfProducts}
+
                 </tbody>
             </table>
-        </div>
+        </>
 
     )
 
