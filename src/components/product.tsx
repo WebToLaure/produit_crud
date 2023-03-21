@@ -4,8 +4,8 @@ import { useState } from 'react';
 export default function Product(props: any) {
 
     const [nomInput, setNomInput] = useState<string>("");
-    const [priceInput, setPriceInput] = useState<string>("");
-    const [quantityInput, setQuantityInput] = useState<string>("");
+    const [priceInput, setPriceInput] = useState<number>();
+    const [quantityInput, setQuantityInput] = useState<number>();
     const [showInput, setShowInput] = useState(false);
 
     async function patchProduct() {
@@ -22,6 +22,7 @@ export default function Product(props: any) {
 
         const response = await fetch(`http://localhost:8000/products/${props.item.id}`, requestOptions)
         const responseJson = await response.json();
+        console.log("Success!", responseJson);
 
         if (responseJson.statusCode === 200) {
             props.patch(responseJson.data)
@@ -42,6 +43,8 @@ export default function Product(props: any) {
         if (responseJson.statusCode === 200) {
 
             props.del(props.item.id)
+
+
         }
     };
     function update() {
@@ -54,7 +57,6 @@ export default function Product(props: any) {
             <td scope="col">#</td>
 
             <td scope="col">{props.item?.nom}</td>
-
             <td scope="col">{props.item?.price}</td>
             <td scope="col">{props.item?.quantity}</td>
             <td scope="col">
@@ -78,10 +80,12 @@ export default function Product(props: any) {
                 {showInput && <div>
                     <hr />
                     <input type='text' className="form-control" value={nomInput} placeholder="Modifiez le nom de votre produit" onChange={(event) => setNomInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                    <input type='text' className="form-control" value={priceInput} placeholder="Modifiez le prix de votre produit" onChange={(event) => setPriceInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
-                    <input type='text' className="form-control" value={quantityInput} placeholder="Modifiez la quantité stockée" onChange={(event) => setQuantityInput(event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <input type='text' className="form-control" value={priceInput} placeholder="Modifiez le prix de votre produit" onChange={(event) => setPriceInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                    <input type='text' className="form-control" value={quantityInput} placeholder="Modifiez la quantité stockée" onChange={(event) => setQuantityInput(+event.target.value)} aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                     <button onClick={patchProduct} type="button" className="btn btn-outline-success btn-sm" data-mdb-ripple-color="dark" >
-                        <i className="bi bi-check-circle-fill"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
                     </button>
                 </div>}
             </td>
