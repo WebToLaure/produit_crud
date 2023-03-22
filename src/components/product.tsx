@@ -48,7 +48,7 @@ export default function Product(props: any) {
         }
     };
     function update() {
-        setShowInput(true)
+        setShowInput(!showInput)
     };
 
     return (
