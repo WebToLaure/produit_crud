@@ -72,7 +72,7 @@ export default function Products() {
     }
 
     function add() {
-        setShowInput(true)
+        setShowInput(!showInput)
     }
     /* function update() {
         setShowInput(true)
